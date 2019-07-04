@@ -414,4 +414,7 @@ KaKaoPay 서버개발 사전과제
 
 > **Note:** The <i class="icon-refresh"></i> 서비스 기동시 HFCG_F2005_T2017.csv 파일이 동일 경로에 있어야 합니다. 
     
+### 테스트 화면
+- KaKaoPay_ApiTest.Jar 이용한 
+<img width="960" src="https://github.com/mcdg77/KaKaoPay_PreTest/blob/master/Test_20190704.png">
 
