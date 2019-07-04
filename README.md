@@ -5,13 +5,16 @@ KaKaoPay 서버개발 사전과제
 > 주택 금융 서비스 API개발
 
 #### <i class="icon-file"></i> 프레임웍 및 개발환경 
-> - JAVA 1.8
-> - Gradle
-> - Spring  Boot 2.1.6.RELEASE
-> - Hsqldb
-> - Mybatis
-> - Mac OS
-> - SpringToolSuite4
+국내 주택금융 신용보증 기관으로부터 년도별 각 금융기관(은행)에서 신용보증한 금액에 대한 데이터가 주어집니다. 이를 기반으로 아래 기능명세에 대한 API 를 개발하고 각 기능별 UnitTest 코드를 개발하세요.
+
+#### <i class="icon-file"></i> 프레임웍 및 개발환경 
+ - JAVA 1.8
+ - Gradle
+ - Spring  Boot 2.1.6.RELEASE
+ - Hsqldb
+ - Mybatis
+ - Mac OS
+ - SpringToolSuite4
 
 
 #### <i class="icon-pencil"></i> 문제해결 전략
