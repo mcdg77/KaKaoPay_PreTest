@@ -72,8 +72,8 @@ KaKaoPay 서버개발 사전과제
        ● 암호화된 값을 비교하여 동일한 경우 인증 처리, 사용자 이외에는 암로를 알수가 없음.
 
 ### <i class="icon-refresh"></i> API 명세서
-#### 1. 회원가입
-- 입력 URL : http://localhost:8080/member/signup
+#### 1. 회원가입(SignUp)
+- 입력 URL :[POST] http://localhost:8080/member/signup
 
       {
          "userid" :"mcdg77",
@@ -86,7 +86,31 @@ KaKaoPay 서버개발 사전과제
           "Message": "Success!!",
           "Result": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzdGlybXBhdGgiLCJzdWIiOiJLYUthb1BheSBQcmVUZXN0IiwiVXNlcklkIjoibWNkZzc3IiwiaWF0IjoxNTYyMjU0OTk2fQ.wyjKQf5nITWkniaGApNcYCCmRHkgZqLfb1pHOsbv0Jk"
       }
+            
+#### 2. 회원조회(SignIn) 
+- 입력 URL :[POST] http://localhost:8080/member/signin
 
+      {
+         "userid" :"mcdg77",
+         "passwd" :"1014"
+      }
+
+- 출력
+      
+      {
+          "Message": "Success!!",
+          "Result": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzdGlybXBhdGgiLCJzdWIiOiJLYUthb1BheSBQcmVUZXN0IiwiVXNlcklkIjoibWNkZzc3IiwiaWF0IjoxNTYyMjU0OTk2fQ.wyjKQf5nITWkniaGApNcYCCmRHkgZqLfb1pHOsbv0Jk"
+      }
+      
+#### 3. Token 재발급(Refresh) 
+- 입력 URL :[GET] http://localhost:8080/member/refresh
+- 출력
+      
+      {
+          "Message": "Success!!",
+          "Result": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzdGlybXBhdGgiLCJzdWIiOiJLYUthb1BheSBQcmVUZXN0IiwiVXNlcklkIjoibWNkZzc3IiwiaWF0IjoxNTYyMjU1ODU3fQ.DNK-I14g5iVEPfN7jm-ATW2jPCN0eL_MrW9EdzwAcEI"
+      }     
+      
 
 
 
