@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.memberMapper">
+
+   <resultMap id="BaseResult" type="com.kakaopay.auth.model.TblUserVO" >
+	  	<result column="usrid" jdbcType="VARCHAR" property="usrid" />
+	  	<result column="passwd" jdbcType="VARCHAR" property="passwd" />
+	  	<result column="salt" jdbcType="VARCHAR" property="salt" />
+   </resultMap>   
+   
+   <resultMap id="jwtResult" type="com.kakaopay.auth.model.TblJwtAuthVO" >
+	  	<result column="usrid" jdbcType="VARCHAR" property="usrid" />
+	  	<result column="strtdt" jdbcType="VARCHAR" property="strtdt" />
+	  	<result column="enddt" jdbcType="VARCHAR" property="enddt" />
+	  	<result column="jwtval" jdbcType="VARCHAR" property="jwtval" />
+   </resultMap> 
+
+
+	<insert id="insertTblUser" parameterType="com.kakaopay.auth.model.TblUserVO">
+	 <![CDATA[
+		INSERT INTO TBL_USER
+		Values (
+		 #{usrid,jdbcType=VARCHAR},
+		 #{passwd,jdbcType=VARCHAR},
+		 #{salt,jdbcType=VARCHAR}
+		)				
+	]]>	
+	</insert>
+	
+	<select id="selectTblUser" resultMap="BaseResult" parameterType="com.kakaopay.auth.model.TblJwtAuthVO">
+	<![CDATA[
+		SELECT usrid,
+		       passwd,
+		       salt
+		  FROM TBL_USER
+		 WHERE usrid =  #{usrid,jdbcType=VARCHAR}
+	]]>
+	</select>
+	
+	<insert id="insertTblJwtAuth" parameterType="com.kakaopay.auth.model.TblJwtAuthVO">
+	<![CDATA[	
+		INSERT INTO TBL_JWTAUTH
+		Values (
+		 #{usrid,jdbcType=VARCHAR},
+		 to_char(now(),'yyyymmddhh24miss'),
+		 '99991231235959',		 
+		 #{jwtval,jdbcType=VARCHAR}
+		)	
+	]]>	
+	</insert>
+	
+	
+	<select id="selectTblJwtAuth" resultMap="jwtResult" parameterType="java.lang.String">
+	<![CDATA[
+		SELECT usrid,
+		       strtdt,
+		       enddt,
+		       jwtval
+		  FROM TBL_JWTAUTH
+		 WHERE usrid =  #{usrid,jdbcType=VARCHAR}	
+		   AND enddt =  '99991231235959'	
+	]]>
+	</select>
+	
+	<select id="selectTblJwtAuthByJtw" resultMap="jwtResult" parameterType="java.lang.String" >
+	<![CDATA[
+		SELECT usrid,
+		       strtdt,
+		       enddt,
+		       jwtval
+		  FROM TBL_JWTAUTH
+		 WHERE jwtval =  #{jwtval,jdbcType=VARCHAR}	
+		   AND enddt =  '99991231235959'	
+	]]>
+	</select>
+	
+	
+	<update id="updateTblJwtAuth" parameterType="com.kakaopay.auth.model.TblJwtAuthVO">
+	<![CDATA[
+		UPDATE TBL_JWTAUTH
+		   SET enddt = to_char(now(),'yyyymmddhh24miss')
+		 WHERE usrid =  #{usrid,jdbcType=VARCHAR}
+		   AND enddt =  '99991231235959'
+	]]>
+	</update>
+
+
+</mapper>

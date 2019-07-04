@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.instituteMapper">
+
+   <resultMap id="userResultMap" type="com.kakaopay.housingfinance.model.instituteVO">
+        <result property="institute_name" column="institute_name"/>
+        <result property="institute_code" column="institute_code"/>       
+    </resultMap>
+    
+   <select id="selecInstituteAll" resultMap="userResultMap" parameterType="java.lang.String" >
+
+		SELECT institute_name, institute_code
+		  FROM  TBL_INSTITUTE		
+         WHERE institute_code not in ( #{inscode, jdbcType=VARCHAR} )
+		 order by ordseq
+	
+	
+    </select>
+
+
+
+</mapper>

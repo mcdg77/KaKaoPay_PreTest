@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.fundMapper">
+
+   <resultMap id="yearlySumResult" type="com.kakaopay.housingfinance.model.yearlySumVO" >
+	  	<result column="year" jdbcType="VARCHAR" property="year" />
+	  	<result column="total_amount" jdbcType="INTEGER" property="total_amount" />
+	  	<result column="detail_amount" jdbcType="VARCHAR" property="detail_amount" />
+   </resultMap>   
+   
+   <resultMap id="maxInsResult" type="com.kakaopay.housingfinance.model.maxInsVO" >
+	  	<result column="year" jdbcType="VARCHAR" property="year" />
+	  	<result column="bank" jdbcType="VARCHAR" property="bank" />
+   </resultMap>  
+  
+   <resultMap id="minMaxResult" type="com.kakaopay.housingfinance.model.minMaxVO" >
+	  	<result column="year" jdbcType="VARCHAR" property="year" />
+	  	<result column="amount" jdbcType="INTEGER" property="amount" />
+   </resultMap>
+  
+
+    <insert id="insertCVS" parameterType="com.kakaopay.housingfinance.model.TblFund" >
+    <![CDATA[
+		INSERT INTO TBL_FUND  
+		Values (
+		 #{hfyear,jdbcType=VARCHAR},
+		 #{hfmonth,jdbcType=VARCHAR},
+		 #{institutecode,jdbcType=VARCHAR},
+		 #{hfamount,jdbcType=DECIMAL}
+		)				
+	]]>    
+    </insert>
+    
+    
+    <select id="selectCVS" resultType="java.lang.Integer"  >
+    <![CDATA[
+		SELECT count(1)
+		  FROM TBL_FUND
+	]]>    
+    </select>
+    
+
+    <select id="selectYearlySum" resultMap="yearlySumResult">
+    <![CDATA[
+		select 
+			a.hf_year || '년' as year, 
+			SUM(CASE WHEN institute_code='tot' then a.hf_amount else 0 end) as total_amount, 
+			'주택도시기금:' || SUM(CASE WHEN institute_code='076' then a.hf_amount else 0 end) ||
+			',국민은행:' || SUM(CASE WHEN institute_code='004' then a.hf_amount else 0 end)   || 
+			',우리은행:' ||SUM(CASE WHEN institute_code='020' then a.hf_amount else 0 end)    ||
+			',신한은행:' ||SUM(CASE WHEN institute_code='088' then a.hf_amount else 0 end)    ||
+			',한국시티은행:' ||SUM(CASE WHEN institute_code='036' then a.hf_amount else 0 end) ||
+			',하나은행:' ||SUM(CASE WHEN institute_code='033' then a.hf_amount else 0 end)    ||
+			',농협은행/수협은행:' ||SUM(CASE WHEN institute_code='010' then a.hf_amount else 0 end)  ||
+			',외환은행:' ||SUM(CASE WHEN institute_code='005' then a.hf_amount else 0 end)  || 
+			',기타은행:' ||SUM(CASE WHEN institute_code='999' then a.hf_amount else 0 end) as detail_amount
+			  from 
+			(
+				select hf_year, 'tot' as institute_code, sum(hf_amount) as hf_amount
+				  from tbl_fund
+				 group by hf_year
+				 union all
+				select hf_year, institute_code, sum(hf_amount) as hf_amount 
+				  from tbl_fund      
+				 group by hf_year, institute_code
+			) a
+			 group by a.hf_year
+			 order by 1
+	]]>
+    
+    </select>
+    <select id="selectMaxIns" parameterType="com.kakaopay.housingfinance.model.TblFund" resultMap="maxInsResult" >
+     <![CDATA[    
+	    select hf_year as year,
+	           b.institute_name as bank
+	      from (
+				select hf_year, institute_code, sum(hf_amount)
+				  from tbl_fund
+			     where hf_year =#{hfyear,jdbcType=VARCHAR}
+			       and institute_code not in ('076')
+			     group by hf_year, institute_code     
+			     order by sum(hf_amount) desc
+	  			) a,
+	 			 tbl_institute b
+	     where a.institute_code= b.institute_code
+	  	 limit 1     
+    ]]>
+    </select>
+
+
+	<select id="selctMinMax" resultMap="minMaxResult" >
+	 <![CDATA[
+		(  
+		select hf_year as year , round(avg(hf_amount)) as amount
+		  from tbl_fund
+		 where institute_code='005'
+		 group by hf_year 
+		 order by 2
+		 limit 1)
+		 union all
+		 (
+		 select hf_year as year, round(avg(hf_amount)) as amount
+		  from tbl_fund
+		 where institute_code='005'
+		 group by hf_year 
+		 order by 2 desc
+		 limit 1
+		 )
+	]]>	
+	</select>
+</mapper>
