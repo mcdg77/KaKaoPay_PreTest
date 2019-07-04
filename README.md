@@ -22,14 +22,14 @@ KaKaoPay 서버개발 사전과제
 
 1. 단독으로 서비스 실행을 위한 환경 준비
  
-    > - Sprnig Boot + Hsqldb 로 구성 Local 환경에서 단독구동 
-    > - 서버 기동시 DB  Table Drop 후 새로 Create Table  :초기화된 상태에서 실행
-    > - CVS파일이 Jar안에 포함되면서 Jar로 단독실행시 파일로드가 안되는 현상 발생 -> 실행되는 Jar 절대경로로 CVS파일을 로드
+> - Sprnig Boot + Hsqldb 로 구성 Local 환경에서 단독구동 
+> - 서버 기동시 DB  Table Drop 후 새로 Create Table  :초기화된 상태에서 실행
+> - CVS파일이 Jar안에 포함되면서 Jar로 단독실행시 파일로드가 안되는 현상 발생 -> 실행되는 Jar 절대경로로 CVS파일을 로드
 
  2. DataBase 설계 
  
-    > -  TBL_USER(사용자정보) 1: N TBL_JWTAUTH(사용자별 Token관리)
-    > -  TBL_INSTITUTE(기간정보) 1:N TBL_FUND(금융기관 신용보즘 기금)
+> -  TBL_USER(사용자정보) 1: N TBL_JWTAUTH(사용자별 Token관리)
+> -  TBL_INSTITUTE(기간정보) 1:N TBL_FUND(금융기관 신용보즘 기금)
  
  > **Note:** The <i class="icon-refresh"></i> 서비스 기동시 실행되는 DDL경로 :  ./src/main/resources/schema-hsqldb.sql 
 
