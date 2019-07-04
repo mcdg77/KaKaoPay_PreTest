@@ -1,26 +1,23 @@
 
-사전과제3 . 주택 금융 서비스 API개발
+
+KaKaoPay 서버개발 사전과제 
 -----------------------
+> 주택 금융 서비스 API개발
 
-
-> **Note:** *주택금융 공급현황 분석 서비스
-
->  국내 주택금융 신용보증 기관으로부터 년도별 각 금융기관(은행)에서 신용보증한 금액에 대한
-데이터가 주어집니다. 이를 기반으로 아래 기능명세에 대한 API 를 개발하고 각 기능별 Unit
-Test 코드를 개발하세요.
-
-#### <i class="icon-file"></i> 개발 프레임웍
+#### <i class="icon-file"></i> 프레임웍 및 개발환경 
 > - JAVA 1.8
 > - Gradle
 > - Spring  Boot 2.1.6.RELEASE
 > - Hsqldb
 > - Mybatis
+> - Mac OS
+> - SpringToolSuite4
 
 
 #### <i class="icon-pencil"></i> 문제해결 전략
 [ 개발 준비]
 
- 1. 단독으로 서비스 실행을 위한 환경 준비
+1. 단독으로 서비스 실행을 위한 환경 준비
  
     > - Sprnig Boot + Hsqldb 로 구성 Local 환경에서 단독구동 
     > - 서버 기동시 DB  Table Drop 후 새로 Create Table  :초기화된 상태에서 실행
