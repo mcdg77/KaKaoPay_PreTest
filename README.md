@@ -31,7 +31,7 @@ KaKaoPay 서버개발 사전과제
 > -  TBL_USER(사용자정보) 1: N TBL_JWTAUTH(사용자별 Token관리)
 > -  TBL_INSTITUTE(기간정보) 1:N TBL_FUND(금융기관 신용보즘 기금)
  
- > **Note:** The <i class="icon-refresh"></i> 서비스 기동시 실행되는 DDL경로 :  ./src/main/resources/schema-hsqldb.sql 
+ > **Note:** <i class="icon-refresh"></i> 서비스 기동시 실행되는 DDL경로 :  ./src/main/resources/schema-hsqldb.sql 
 
 #### [ API 개발]
   1. 데이터 파일에서 각 레코드를 데이터베이스에 저장하는 API 개발
@@ -412,7 +412,7 @@ KaKaoPay 서버개발 사전과제
     $ cd ./build/libs
     $ java -jar KaKaoPay_Test-1.0.1.jar    
 
-> **Note:** The <i class="icon-refresh"></i> 서비스 기동시 HFCG_F2005_T2017.csv 파일이 동일 경로에 있어야 합니다. 
+> **Note:** <i class="icon-refresh"></i> 서비스 기동시 HFCG_F2005_T2017.csv 파일이 동일 경로에 있어야 합니다. 
     
 ### 테스트 화면
 - KaKaoPay_ApiTest.Jar 이용한 테스트 
