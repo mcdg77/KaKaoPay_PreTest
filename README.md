@@ -413,6 +413,9 @@ KaKaoPay 서버개발 사전과제
     $ java -jar KaKaoPay_Test-1.0.1.jar    
 
 > **Note:** <i class="icon-refresh"></i> 서비스 기동시 HFCG_F2005_T2017.csv 파일이 동일 경로에 있어야 합니다. 
+- 서버실행 화면
+<img width="960" src="http://m.giro36524.com:8090/images/Test_0705_Main.png">
+    
     
 ### 테스트 화면
 - KaKaoPay_ApiTest.Jar 이용한 테스트 
