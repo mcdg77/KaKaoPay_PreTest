@@ -417,5 +417,5 @@ KaKaoPay 서버개발 사전과제
 ### 테스트 화면
 - KaKaoPay_ApiTest.Jar 이용한 테스트 
   <br> 소스경로 https://github.com/mcdg77/ApiTest
-<img width="960" src="https://www.giro36524.com:8090/ubill/images/Test_20190704.png">
+<img width="960" src="http://m.giro36524.com:8090/images/Test_20190704.png">
 
